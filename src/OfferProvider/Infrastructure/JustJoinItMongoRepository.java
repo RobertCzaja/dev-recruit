@@ -1,10 +1,11 @@
 package OfferProvider.Infrastructure;
 
+import OfferProvider.Application.JustJoinItRepository;
 import Shared.Infrastructure.MongoDBConnection;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
-public class JustJoinItMongoRepository {
+public class JustJoinItMongoRepository implements JustJoinItRepository {
 
     private final MongoCollection<Document> collection;
 

@@ -1,8 +1,5 @@
 package OfferProvider.Application;
 
-import OfferProvider.Infrastructure.JustJoinItConnector;
-import OfferProvider.Infrastructure.JustJoinItMongoRepository;
-import OfferProvider.Infrastructure.JustJoinItPayloadExtractor;
 import org.bson.Document;
 
 import java.time.LocalDateTime;
@@ -14,21 +11,21 @@ public class JustJoinItProvider {
 
     private final JustJoinItConnector connector;
     private final JustJoinItPayloadExtractor payloadExtractor;
-    private final JustJoinItMongoRepository repository;
+    private final JustJoinItRepository repository;
 
     public JustJoinItProvider(
             JustJoinItConnector connector,
             JustJoinItPayloadExtractor payloadExtractor,
-            JustJoinItMongoRepository repository
+            JustJoinItRepository repository
     ) {
         this.connector = connector;
         this.payloadExtractor = payloadExtractor;
         this.repository = repository;
     }
 
-    public void fetch(String technology, UUID fetchingId)
+    public void fetch(String technology, UUID scrapingId)
     {
-        String stringifyJsonPayload = connector.fetchOffersHtmlPage(technology);
+        String stringifyJsonPayload = connector.fetchStringifyJsonPayload(technology);
         ArrayList<Map<String, Object>> offers = payloadExtractor.extract(stringifyJsonPayload);
 
         for (Map<String, Object> offer : offers) {
@@ -37,7 +34,7 @@ public class JustJoinItProvider {
                             .append("offer", offer)
                             .append("createdAt", LocalDateTime.now())
                             .append("technology", technology)
-                            .append("fetchingId", fetchingId.toString()
+                            .append("scrapingId", scrapingId.toString()
                     )
             );
         }

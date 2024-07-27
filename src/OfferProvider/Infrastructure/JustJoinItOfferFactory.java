@@ -54,7 +54,6 @@ public class JustJoinItOfferFactory {
 
     private @NotNull ArrayList<Salary> getSalaries(JsonNode offerNode)
     {
-
         Iterator<JsonNode> employmentTypesNode = offerNode.path("employmentTypes").elements();
         ArrayList<Salary> salaries = new ArrayList<>();
         while (employmentTypesNode.hasNext()) {

@@ -1,4 +1,4 @@
-package OfferProvider.Infrastructure;
+package OfferProvider.Application;
 
 import Model.JustJoinItException;
 import Shared.Infrastructure.FileManager;
@@ -36,7 +36,6 @@ public class JustJoinItPayloadExtractor {
                     .elements();
             ArrayList<Map<String, Object>> offers = new ArrayList<>();
             while (offersNode.hasNext()) {
-                JsonNode offerNode = offersNode.next();
                 offers.add(mapper.convertValue(offersNode.next(), new TypeReference<Map<String, Object>>() {}));
             }
             return offers;
