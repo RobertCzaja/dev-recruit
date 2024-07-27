@@ -43,7 +43,7 @@ public class Main {
         MongoCollection<Document> collection = mongoDBConnection
                 .getDatabase()
                 .getCollection("just_join_it_raw_offers");
-        //----------------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         ObjectMapper mapper = new ObjectMapper();
         int i = 0;
