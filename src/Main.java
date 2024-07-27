@@ -39,11 +39,9 @@ public class Main {
         Iterator<JsonNode> offersNode = payloadExtractor.extract(rawJsonPayload);
         //List<JustJoinItOffer> offers = factory.createFromRawPayload(offersNode);
 
-        //----------------------------------------------------------------------
         MongoCollection<Document> collection = mongoDBConnection
                 .getDatabase()
                 .getCollection("just_join_it_raw_offers");
-        //---------------------------------------------------------------------
 
         ObjectMapper mapper = new ObjectMapper();
         int i = 0;
